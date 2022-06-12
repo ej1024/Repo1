@@ -85,11 +85,15 @@ void AppInit(void)
 void AppRun(void)
 {
 	// Initialize the UART at 9600 baud
-	UART3_Init(9600);
+	UART3_Init(115200);
 	delay_ms(500);
+    UART3_Write_Text("\x1b[2J");//clear screen
+    UART3_Write_Text("\x1b[f");//move to top left
+    UART3_Write_Text("Juice Box C++ UART V0.1\r\n");
 	
 	while(1)
 	{
+         
 		 // Check to see if we have data
 		 if (UART3_Has_Data()) 
 		 {
@@ -98,6 +102,8 @@ void AppRun(void)
 			 
 			 // Write Back the Data We Read
 			 UART3_Write(c);
+             if(c == '\r')
+                UART3_Write('\n');                
 		 }
 	}
 
