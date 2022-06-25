@@ -78,3 +78,65 @@ void UART_3_Class::Init_UART(uint32_t baud, uint32_t F_CPU_Hz)
 	// SERCOM3 peripheral enabled
 	SERCOM3->USART.CTRLA.reg |= SERCOM_USART_CTRLA_ENABLE;
 }    
+
+void UART_3_Class::Clear_Screen()
+{
+        Write_String("\x1b[2J");//clear screen
+        Write_String("\x1b[f");//move to top left
+}
+
+/*******************************************************************************
+ * Function:        void UART3_Write(char data)
+ *
+ * PreCondition:    The UART must be initialized
+ *
+ * Input:           The character we want to send
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function writes a character to the UART module
+ *                  
+ *
+ * Note:            
+ *
+ ******************************************************************************/
+void UART_3_Class::Write_Char(char data)
+{
+	// Wait on interrupt flag and Write some data
+	while(!(REG_SERCOM3_USART_INTFLAG) & 1)
+	{
+		
+	}
+	
+	REG_SERCOM3_USART_DATA = data;
+} //UART3_Write()
+
+
+/*******************************************************************************
+ * Function:        void Write_String(char *text)
+ *
+ * PreCondition:    The UART must be initialized
+ *
+ * Input:           This text we want to send
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        This function writes a string to the UART module
+ *                  
+ *
+ * Note:            Must fix ISO forbids converting a string constant to char warning
+ *
+ ******************************************************************************/
+void UART_3_Class::Write_String(char *text)
+{
+	// we write text until we reach EOL
+	for(int i=0;text[i]!='\0';i++)
+	{
+		Write_Char(text[i]);
+	}
+	
+} // Write_String()
