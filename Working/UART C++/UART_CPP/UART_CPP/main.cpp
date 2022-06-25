@@ -30,6 +30,7 @@
 #include "sam.h"
 #include "definitions.h"
 #include "app.h"
+#include "UART_3.h"
 
 //////////////////////////////////////////////////////////////////////////
 // Function Prototypes
@@ -55,6 +56,8 @@ void ClocksInit(void);	// Configure Clock, Wait States and synch, bus clocks for
  ******************************************************************************/
 int main(void)
 {
+    class UART_3_Class UART3;
+    UART3.Init_UART(115200, 49000000);
 	// CMSIS compliant function not used
 	//SystemInit();
 	
