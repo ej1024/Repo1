@@ -1,7 +1,7 @@
 /*
  * File:   main.c
  * Author: Armstrong Subero
- * Processor: SAMD21G18A @ 48MHz, 3.3v
+ * Processor: SAMD21J18A @ 48MHz, 3.3v
  * Program: Source file for application
  * Compiler: ARM-GCC (v6.3.1, Atmel Studio 7.0)
  * Program Version 1.0
@@ -27,7 +27,6 @@
 #include "sam.h"
 #include "definitions.h"
 #include "app.h"
-
 //////////////////////////////////////////////////////////////////////////
 // Function Prototypes
 //////////////////////////////////////////////////////////////////////////

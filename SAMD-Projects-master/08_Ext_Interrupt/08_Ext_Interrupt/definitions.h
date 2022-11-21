@@ -1,7 +1,7 @@
 /*
  * File:   definitions.h
  * Author: Armstrong Subero
- * Processor: SAMD21G18A @ 48MHz, 3.3v
+ * Processor: SAMD21J18A @ 48MHz, 3.3v
  * Program: Header file for application
  * Compiler: ARM-GCC (v6.3.1, Atmel Studio 7.0)
  * Program Version 1.0
@@ -28,13 +28,13 @@
 #define PORTB     (1ul)
 
 // LED0 IO Pin definition
-#define LED0_PORT            PORTA
-#define LED0_PIN_NUMBER      (17ul)
-#define LED0_PIN_MASK        PORT_PA17
+#define LED0_PORT            PORTB
+#define LED0_PIN_NUMBER      (30ul)
+#define LED0_PIN_MASK        PORT_PB30
 
 #define EXT0_PORT            PORTA
-#define EXT0_PIN_NUMBER      (07ul)
-#define EXT0_PIN_MASK        PORT_PA07
+#define EXT0_PIN_NUMBER      (15ul)
+#define EXT0_PIN_MASK        PORT_PA15
 
 // GCLK_MAIN Clock output IO Pin Definition
 #define GCLK_MAIN_OUTPUT_PORT       PORTA

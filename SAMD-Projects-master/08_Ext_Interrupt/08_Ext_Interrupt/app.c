@@ -156,8 +156,10 @@ void AppRun(void)
 	while(1)
 	{
         // regular state toggle LED
-		REG_PORT_OUTTGL0 = LED0_PIN_MASK;
-		delay_ms(100);
+		REG_PORT_DIRSET0 = LED0_PIN_MASK;
+		delay_ms(2000);
+        REG_PORT_DIRCLR0 = LED0_PIN_MASK;
+        delay_ms(2000);
 	}
 
 } // Apprun()
