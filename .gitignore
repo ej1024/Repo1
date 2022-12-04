@@ -31,3 +31,4 @@
 *.out
 *.app
 /Working/UART C++/UART_CPP/UART_CPP/Debug
+*.vscode/

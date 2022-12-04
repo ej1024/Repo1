@@ -52,12 +52,16 @@ void AppInit(void)
 	*/
 	ClocksInit();
 	
-	// Assign LED0 as OUTPUT
-	REG_PORT_DIR0 = LED0_PIN_MASK;
-	
-	// Set LED0 OFF
-	REG_PORT_OUTCLR0 = LED0_PIN_MASK;
-	
+	//LED Configuration
+	PORT->Group[PORTB].PINCFG[LED0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN;
+	PORT->Group[PORTB].DIRSET.reg = 1 << LED0_PIN_NUMBER;
+	PORT->Group[PORTB].OUTSET.reg = 1 << LED0_PIN_NUMBER;
+
+	//SW Configuration
+	PORT->Group[PORTA].PINCFG[EXT0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN | PORT_PINCFG_INEN | PORT_PINCFG_PMUXEN;
+	PORT->Group[PORTA].PMUX[7].bit.PMUXO = MUX_PA15A_EIC_EXTINT15;
+	PORT->Group[PORTA].DIRCLR.reg = 1 << EXT0_PIN_NUMBER;	// make input
+	PORT->Group[PORTA].OUTSET.reg = 1 << EXT0_PIN_NUMBER;	// needs to set as high because switch is switch to gnd
 
 } // AppInit()
 
@@ -84,9 +88,6 @@ void AppInit(void)
 
 void AppRun(void)
 {
-	// Set the LED drive strength to strong
-	PORT->Group[LED0_PORT].PINCFG[LED0_PIN_NUMBER].bit.DRVSTR = 1;
-	
     /* -------------------------------------------------
 	* 1) Disable Interrupt and Set Priority
 	*/
@@ -103,10 +104,8 @@ void AppRun(void)
     /* -------------------------------------------------
 	* 2) Setup Interrupt Pin
 	*/
-     PORT->Group[EXT0_PORT].PINCFG[EXT0_PIN_NUMBER].reg = PORT_PINCFG_PMUXEN; // Pin pullup and enable MUX'ing
-     PORT->Group[EXT0_PORT].PMUX[EXT0_PIN_NUMBER<<1].bit.PMUXE = MUX_PA07A_EIC_EXTINT7; // Set up IRQ-pin (PA7) to special function A (External Interrupt 7)
-	
-	
+    // PORT->Group[EXT0_PORT].PINCFG[EXT0_PIN_NUMBER].reg = PORT_PINCFG_PMUXEN | PORT_PINCFG_PULLEN; // Pin pullup and enable MUX'ing
+    // PORT->Group[EXT0_PORT].PMUX[15].bit.PMUXE = MUX_PA15A_EIC_EXTINT15; // Set up IRQ-pin (PA7) to special function A (External Interrupt 7)
 	/* -------------------------------------------------
 	* 3) select EIC clock
 	*/
@@ -136,11 +135,11 @@ void AppRun(void)
 	// falling edge detection
 	// filter 7 enable
 	// config 0 for EXTINT 0-7 and config 1 for EXTINT 8-15
-	EIC->CONFIG[0].reg |= EIC_CONFIG_SENSE7_FALL | EIC_CONFIG_FILTEN7;
+	EIC->CONFIG[1].reg |= EIC_CONFIG_SENSE7_FALL | EIC_CONFIG_FILTEN7;
 	
     
     // enable the interrupt
-	EIC->INTENSET.bit.EXTINT7 = 1;
+	EIC->INTENSET.bit.EXTINT15 = 1;
 	EIC->CTRL.bit.ENABLE = 1;
 	
 	// wait for synchronization	
@@ -156,10 +155,8 @@ void AppRun(void)
 	while(1)
 	{
         // regular state toggle LED
-		REG_PORT_DIRSET0 = LED0_PIN_MASK;
-		delay_ms(2000);
-        REG_PORT_DIRCLR0 = LED0_PIN_MASK;
-        delay_ms(2000);
+		REG_PORT_OUTSET1 = LED0_PIN_MASK;
+		delay_ms(100);
 	}
 
 } // Apprun()
@@ -189,11 +186,11 @@ void EIC_Handler(void)
 	if ( (EIC->INTFLAG.reg & (EXT0_PIN_MASK) ) != 0 )
 	{
 		// Turn the LED on PA17 ON
-		REG_PORT_OUTSET0 = LED0_PIN_MASK;
+		REG_PORT_OUTCLR1 = LED0_PIN_MASK;
 		
 		// delay 3000 ms
 		delay_ms(3000);
-		
+
 		// clear interrupt flag
 		EIC->INTFLAG.reg = (EXT0_PIN_MASK);
 	}
