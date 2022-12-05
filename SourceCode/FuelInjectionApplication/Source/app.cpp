@@ -20,12 +20,11 @@
 //////////////////////////////////////////////////////////////////////////
 // Include and defines
 //////////////////////////////////////////////////////////////////////////
+
 #include "app.h"
 #include "clock.h"
-
-#include "USART3.h"
-
-
+#include "UART.h"
+#include "string.h"
 
 /*******************************************************************************
  * Function:        void AppInit(void)
@@ -87,28 +86,22 @@ void AppRun(void)
 	// Initialize the UART at 9600 baud
 	UART3_Init(115200);
 	delay_ms(500);
-    UART3_Write_Text("\x1b[2J");//clear screen
-    UART3_Write_Text("\x1b[f");//move to top left
-    UART3_Write_Text("Juice Box C++ UART V0.1\r\n");
-	
+
+	char c[] = "Juice Box C++ UART V0.1\r\n";
+	UART3_Write_Text((char*)&c);
+
 	while(1)
 	{
-         
 		 // Check to see if we have data
 		 if (UART3_Has_Data()) 
 		 {
 			 // Read Data from UART3
-			 char c = UART3_Read();
+			 //char c = UART3_Read();
 			 
 			 // Write Back the Data We Read
-			 UART3_Write(c);
-             if(c == '\r')
-                UART3_Write('\n');                
+			 //UART3_Write(c);
 		 }
 	}
 
 } // Apprun()
-
-
-
 

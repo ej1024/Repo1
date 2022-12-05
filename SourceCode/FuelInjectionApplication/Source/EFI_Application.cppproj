@@ -190,13 +190,13 @@
     <OutputFileExtension>.elf</OutputFileExtension>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.c">
+    <Compile Include="app.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="app.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="clock.c">
+    <Compile Include="clock.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="clock.h">
@@ -205,7 +205,7 @@
     <Compile Include="definitions.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="delay.c">
+    <Compile Include="delay.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="delay.h">
@@ -217,19 +217,16 @@
     <Compile Include="Device_Startup\system_samd21.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="EFI_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UART_3.cpp">
+    <Compile Include="UART.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UART_3.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="USART3.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="USART3.h">
+    <Compile Include="UART.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

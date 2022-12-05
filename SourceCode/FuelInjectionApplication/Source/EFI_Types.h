@@ -1,43 +1,39 @@
 /*
- * File:   app.h
+ * File:   USART3.h
  * Author: Armstrong Subero
  * Processor: SAMD21G18A @ 48MHz, 3.3v
  * Program: Header file for application
  * Compiler: ARM-GCC (v6.3.1, Atmel Studio 7.0)
  * Program Version 1.0
- * Program Description: This header file contains your application includes
+ * Program Description: This header file provides functions for USART
+                        communication
  * Modified From: None
  * 
  * Change History:
  *
  * Author             Rev     Date          Description
- * Armstrong Subero   1.0     26/05/2020    Initial Release.
+ * Armstrong Subero   1.0     01/06/2020    Initial Release.
  * 
- * Updated on May 26, 2020, 11:09 AM
+ * Updated on June 01, 2020, 05:58 PM
  */
 
 
-#ifndef APP_H_
-#define APP_H_
-
+#ifndef EFI_Types_H
+#define EFI_Types_H
 
 
 //////////////////////////////////////////////////////////////////////////
 // Include and defines
 //////////////////////////////////////////////////////////////////////////
-#include "sam.h"
-#include "definitions.h"
+#include <stdbool.h>
+#define F_CPU 48000000UL
+#include "delay.h"
 
 
 //////////////////////////////////////////////////////////////////////////
 // Function Prototypes
 //////////////////////////////////////////////////////////////////////////
 
-// initialize your application
-void AppInit(void);
-
-// run the main program		
-void AppRun(void);
 
 
-#endif /* APP_H_ */
+#endif /* EFI_Types_H */

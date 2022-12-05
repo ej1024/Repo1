@@ -87,16 +87,15 @@ void ClocksInit(void)
 	*/
 	
 	// Configure SYSCTRL->XOSC32K settings
-	SYSCTRL_XOSC32K_Type sysctrl_xosc32k =
-	 {
-		.bit.WRTLOCK = 0,		/* XOSC32K configuration is not locked */
-		.bit.STARTUP = 0x2,		/* 3 cycle start-up time */
-		.bit.ONDEMAND = 0,		/* Osc. is always running when enabled */
-		.bit.RUNSTDBY = 0,		/* Osc. is disabled in standby sleep mode */
-		.bit.AAMPEN = 0,		/* Disable automatic amplitude control */
-		.bit.EN32K = 1,			/* 32kHz output is disabled */
-		.bit.XTALEN = 1			/* Crystal connected to XIN32/XOUT32 */
-	};
+	SYSCTRL_XOSC32K_Type sysctrl_xosc32k; 
+	sysctrl_xosc32k.bit.WRTLOCK = 0;		/* XOSC32K configuration is not locked */
+	sysctrl_xosc32k.bit.STARTUP = 0x2;		/* 3 cycle start-up time */
+	sysctrl_xosc32k.bit.ONDEMAND = 0;		/* Osc. is always running when enabled */
+	sysctrl_xosc32k.bit.RUNSTDBY = 0;		/* Osc. is disabled in standby sleep mode */
+	sysctrl_xosc32k.bit.AAMPEN = 0;		/* Disable automatic amplitude control */
+	sysctrl_xosc32k.bit.EN32K = 1;			/* 32kHz output is disabled */
+	sysctrl_xosc32k.bit.XTALEN = 1;			/* Crystal connected to XIN32/XOUT32 */
+	
 	// Write these settings
 	SYSCTRL->XOSC32K.reg = sysctrl_xosc32k.reg;
 	// Enable the Oscillator - Separate step per data sheet recommendation (sec 17.6.3)
@@ -111,26 +110,24 @@ void ClocksInit(void)
 	
 	// Set the Generic Clock Generator 1 output divider to 1
 	// Configure GCLK->GENDIV settings
-	GCLK_GENDIV_Type gclk1_gendiv = 
-	{
-		.bit.DIV = 1,								/* Set output division factor = 1 */
-		.bit.ID = GENERIC_CLOCK_GENERATOR_XOSC32K	/* Apply division factor to Generator 1 */
-	};
+	GCLK_GENDIV_Type gclk1_gendiv;
+	gclk1_gendiv.bit.DIV = 1;								/* Set output division factor = 1 */
+	gclk1_gendiv.bit.ID = GENERIC_CLOCK_GENERATOR_XOSC32K;	/* Apply division factor to Generator 1 */
+
 	// Write these settings
 	GCLK->GENDIV.reg = gclk1_gendiv.reg;
 	
 	// Configure Generic Clock Generator 1 with XOSC32K as source
-	GCLK_GENCTRL_Type gclk1_genctrl = 
-	{
-		.bit.RUNSTDBY = 0,		/* Generic Clock Generator is stopped in stdby */
-		.bit.DIVSEL =  0,		/* Use GENDIV.DIV value to divide the generator */
-		.bit.OE = 0,			/* Disable generator output to GCLK_IO[1] */
-		.bit.OOV = 0,			/* GCLK_IO[1] output value when generator is off */
-		.bit.IDC = 1,			/* Generator duty cycle is 50/50 */
-		.bit.GENEN = 1,			/* Enable the generator */
-		.bit.SRC = 0x05,		/* Generator source: XOSC32K output */
-		.bit.ID = GENERIC_CLOCK_GENERATOR_XOSC32K			/* Generator ID: 1 */
-	};
+	GCLK_GENCTRL_Type gclk1_genctrl;
+	gclk1_genctrl.bit.RUNSTDBY = 0;							/* Generic Clock Generator is stopped in stdby */
+	gclk1_genctrl.bit.DIVSEL =  0;							/* Use GENDIV.DIV value to divide the generator */
+	gclk1_genctrl.bit.OE = 0;								/* Disable generator output to GCLK_IO[1] */
+	gclk1_genctrl.bit.OOV = 0;								/* GCLK_IO[1] output value when generator is off */
+	gclk1_genctrl.bit.IDC = 1;								/* Generator duty cycle is 50/50 */
+	gclk1_genctrl.bit.GENEN = 1;							/* Enable the generator */
+	gclk1_genctrl.bit.SRC = 0x05;							/* Generator source: XOSC32K output */
+	gclk1_genctrl.bit.ID = GENERIC_CLOCK_GENERATOR_XOSC32K;	/* Generator ID: 1 */
+
 	// Write these settings
 	GCLK->GENCTRL.reg = gclk1_genctrl.reg;
 	// GENCTRL is Write-Synchronized...so wait for write to complete
@@ -140,13 +137,12 @@ void ClocksInit(void)
 	* 4) Put Generic Clock Generator 1 as source for Generic Clock Multiplexer 0 (DFLL48M reference)
 	*/
 	
-	GCLK_CLKCTRL_Type gclk_clkctrl = 
-	{
-		.bit.WRTLOCK = 0,		/* Generic Clock is not locked from subsequent writes */
-		.bit.CLKEN = 1,			/* Enable the Generic Clock */
-		.bit.GEN = GENERIC_CLOCK_GENERATOR_XOSC32K, 	/* Generic Clock Generator 1 is the source */
-		.bit.ID = 0x00			/* Generic Clock Multiplexer 0 (DFLL48M Reference) */
-	};
+	GCLK_CLKCTRL_Type gclk_clkctrl;
+	gclk_clkctrl.bit.WRTLOCK = 0;							/* Generic Clock is not locked from subsequent writes */
+	gclk_clkctrl.bit.CLKEN = 1;								/* Enable the Generic Clock */
+	gclk_clkctrl.bit.GEN = GENERIC_CLOCK_GENERATOR_XOSC32K; /* Generic Clock Generator 1 is the source */
+	gclk_clkctrl.bit.ID = 0x00;								/* Generic Clock Multiplexer 0 (DFLL48M Reference) */
+	
 	// Write these settings
 	GCLK->CLKCTRL.reg = gclk_clkctrl.reg;
 	
@@ -167,12 +163,11 @@ void ClocksInit(void)
 	while(!SYSCTRL->PCLKSR.bit.DFLLRDY);
 	
 	// Set up the Multiplier, Coarse and Fine steps
-	SYSCTRL_DFLLMUL_Type sysctrl_dfllmul = 
-	{
-		.bit.CSTEP = 31,		/* Coarse step - use half of the max value (63) */
-		.bit.FSTEP = 511,		/* Fine step - use half of the max value (1023) */
-		.bit.MUL = 1465			/* Multiplier = MAIN_CLK_FREQ (48MHz) / EXT_32K_CLK_FREQ (32768 Hz) */
-	};
+	SYSCTRL_DFLLMUL_Type sysctrl_dfllmul; 
+	sysctrl_dfllmul.bit.CSTEP = 31;		/* Coarse step - use half of the max value (63) */
+	sysctrl_dfllmul.bit.FSTEP = 511;		/* Fine step - use half of the max value (1023) */
+	sysctrl_dfllmul.bit.MUL = 1465;			/* Multiplier = MAIN_CLK_FREQ (48MHz) / EXT_32K_CLK_FREQ (32768 Hz) */
+
 	// Write these settings
 	SYSCTRL->DFLLMUL.reg = sysctrl_dfllmul.reg;
 	// Wait for synchronization
@@ -197,31 +192,31 @@ void ClocksInit(void)
 	
 	// Now that DFLL48M is running, switch CLKGEN0 source to it to run the core at 48 MHz.
 	// Enable output of Generic Clock Generator 0 (GCLK_MAIN) to the GCLK_IO[0] GPIO Pin
-	GCLK_GENCTRL_Type gclk_genctrl0 = 
-	{
-		.bit.RUNSTDBY = 0,		/* Generic Clock Generator is stopped in stdby */
-		.bit.DIVSEL =  0,		/* Use GENDIV.DIV value to divide the generator */
-		.bit.OE = 1,			/* Enable generator output to GCLK_IO[0] */
-		.bit.OOV = 0,			/* GCLK_IO[0] output value when generator is off */
-		.bit.IDC = 1,			/* Generator duty cycle is 50/50 */
-		.bit.GENEN = 1,			/* Enable the generator */
-		.bit.SRC = 0x07,		/* Generator source: DFLL48M output */
-		.bit.ID = GENERIC_CLOCK_GENERATOR_MAIN			/* Generator ID: 0 */
-	};
+	GCLK_GENCTRL_Type gclk_genctrl0;
+	
+	gclk_genctrl0.bit.RUNSTDBY = 0;						/* Generic Clock Generator is stopped in stdby */
+	gclk_genctrl0.bit.DIVSEL =  0;						/* Use GENDIV.DIV value to divide the generator */
+	gclk_genctrl0.bit.OE = 1;							/* Enable generator output to GCLK_IO[0] */
+	gclk_genctrl0.bit.OOV = 0;							/* GCLK_IO[0] output value when generator is off */
+	gclk_genctrl0.bit.IDC = 1;							/* Generator duty cycle is 50/50 */
+	gclk_genctrl0.bit.GENEN = 1;						/* Enable the generator */
+	gclk_genctrl0.bit.SRC = 0x07;						/* Generator source: DFLL48M output */
+	gclk_genctrl0.bit.ID = GENERIC_CLOCK_GENERATOR_MAIN;/* Generator ID: 0 */
+	
 	GCLK->GENCTRL.reg = gclk_genctrl0.reg;
 	// GENCTRL is Write-Synchronized...so wait for write to complete
 	while(GCLK->STATUS.bit.SYNCBUSY);
 	
 	// Direct the GCLK_IO[0] output to PA28
-	PORT_WRCONFIG_Type port0_wrconfig = 
-	{
-		.bit.HWSEL = 1,			/* Pin# (28) - falls in the upper half of the 32-pin PORT group */
-		.bit.WRPINCFG = 1,		/* Update PINCFGy registers for all pins selected */
-		.bit.WRPMUX = 1,		/* Update PMUXn registers for all pins selected */
-		.bit.PMUX = 7,			/* Peripheral Function H selected (GCLK_IO[0]) */
-		.bit.PMUXEN = 1,		/* Enable peripheral Multiplexer */
-		.bit.PINMASK = (uint16_t)(1 << (28-16)) /* Select the pin(s) to be configured */
-	};
+	PORT_WRCONFIG_Type port0_wrconfig; 
+	
+	port0_wrconfig.bit.HWSEL = 1;							/* Pin# (28) - falls in the upper half of the 32-pin PORT group */
+	port0_wrconfig.bit.WRPINCFG = 1;						/* Update PINCFGy registers for all pins selected */
+	port0_wrconfig.bit.WRPMUX = 1;							/* Update PMUXn registers for all pins selected */
+	port0_wrconfig.bit.PMUX = 7;							/* Peripheral Function H selected (GCLK_IO[0]) */
+	port0_wrconfig.bit.PMUXEN = 1;							/* Enable peripheral Multiplexer */
+	port0_wrconfig.bit.PINMASK = (uint16_t)(1 << (28-16)); 	/* Select the pin(s) to be configured */
+	
 	// Write these settings
 	PORT->Group[0].WRCONFIG.reg = port0_wrconfig.reg;
 	
@@ -238,26 +233,24 @@ void ClocksInit(void)
 	
 	// Set the Generic Clock Generator 3 output divider to 1
 	// Configure GCLK->GENDIV settings
-	GCLK_GENDIV_Type gclk3_gendiv = 
-	{
-		.bit.DIV = 1,								/* Set output division factor = 1 */
-		.bit.ID = GENERIC_CLOCK_GENERATOR_OSC8M		/* Apply division factor to Generator 3 */
-	};
+	GCLK_GENDIV_Type gclk3_gendiv;
+	gclk3_gendiv.bit.DIV = 1;								/* Set output division factor = 1 */
+	gclk3_gendiv.bit.ID = GENERIC_CLOCK_GENERATOR_OSC8M;	/* Apply division factor to Generator 3 */
+	
 	// Write these settings
 	GCLK->GENDIV.reg = gclk3_gendiv.reg;
 	
 	// Configure Generic Clock Generator 3 with OSC8M as source
-	GCLK_GENCTRL_Type gclk3_genctrl = 
-	{
-		.bit.RUNSTDBY = 0,		/* Generic Clock Generator is stopped in stdby */
-		.bit.DIVSEL =  0,		/* Use GENDIV.DIV value to divide the generator */
-		.bit.OE = 0,			/* Disable generator output to GCLK_IO[1] */
-		.bit.OOV = 0,			/* GCLK_IO[2] output value when generator is off */
-		.bit.IDC = 1,			/* Generator duty cycle is 50/50 */
-		.bit.GENEN = 1,			/* Enable the generator */
-		.bit.SRC = 0x06,		/* Generator source: OSC8M output */
-		.bit.ID = GENERIC_CLOCK_GENERATOR_OSC8M			/* Generator ID: 3 */
-	};
+	GCLK_GENCTRL_Type gclk3_genctrl; 
+	gclk3_genctrl.bit.RUNSTDBY = 0;						  /* Generic Clock Generator is stopped in stdby */
+	gclk3_genctrl.bit.DIVSEL =  0;						  /* Use GENDIV.DIV value to divide the generator */
+	gclk3_genctrl.bit.OE = 0;							  /* Disable generator output to GCLK_IO[1] */
+	gclk3_genctrl.bit.OOV = 0;							  /* GCLK_IO[2] output value when generator is off */
+	gclk3_genctrl.bit.IDC = 1;							  /* Generator duty cycle is 50/50 */
+	gclk3_genctrl.bit.GENEN = 1;						  /* Enable the generator */
+	gclk3_genctrl.bit.SRC = 0x06;						  /* Generator source: OSC8M output */
+	gclk3_genctrl.bit.ID = GENERIC_CLOCK_GENERATOR_OSC8M; /* Generator ID: 3 */
+	
 	// Write these settings
 	GCLK->GENCTRL.reg = gclk3_genctrl.reg;
 	// GENCTRL is Write-Synchronized...so wait for write to complete
