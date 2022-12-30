@@ -21,6 +21,8 @@
 #ifndef DELAY_H_
 #define DELAY_H_
 
+#include "EFI_Types.h"
+
 //////////////////////////////////////////////////////////////////////////
 // Function Prototypes
 //////////////////////////////////////////////////////////////////////////
@@ -45,9 +47,9 @@ void delay_n_cycles(unsigned long n);
 
 #define delay_cycles              delay_n_cycles
 
-#define cpu_delay_s(delay) delay_cycles(cpu_ms_2_cy(1000 * delay, F_CPU))
-#define cpu_delay_ms(delay) delay_cycles(cpu_ms_2_cy(delay, F_CPU))
-#define cpu_delay_us(delay) delay_cycles(cpu_us_2_cy(delay, F_CPU))
+#define cpu_delay_s(delay) delay_cycles(cpu_ms_2_cy(1000 * delay, MAIN_CLK_FREQ))
+#define cpu_delay_ms(delay) delay_cycles(cpu_ms_2_cy(delay, MAIN_CLK_FREQ))
+#define cpu_delay_us(delay) delay_cycles(cpu_us_2_cy(delay, MAIN_CLK_FREQ))
 
 
 /**

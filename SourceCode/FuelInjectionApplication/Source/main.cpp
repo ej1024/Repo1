@@ -1,7 +1,7 @@
 /*
  * File:   main.c
  * Author: Armstrong Subero
- * Processor: SAMD21G18A @ 48MHz, 3.3v
+ * Processor: SAMD21J18A @ 48MHz, 3.3v
  * Program: Source file for application
  * Compiler: ARM-GCC (v6.3.1, Atmel Studio 7.0)
  * Program Version 1.0
@@ -20,54 +20,60 @@
  * Author                Rev     Date          Description
  * Armstrong Subero      1.1     26/05/2020    Initial Release
  *
- * Updated on May 26, 2020, 11:51 AM
+ * Updated on 2022-12-30 00:36:16
  */
 
 
 //////////////////////////////////////////////////////////////////////////
-// Include and defines
+// Include and Defines
 //////////////////////////////////////////////////////////////////////////
-#include "sam.h"
-#include "definitions.h"
-#include "app.h"
+#include "CORE_PIN.h"
 
-//////////////////////////////////////////////////////////////////////////
-// Function Prototypes
-//////////////////////////////////////////////////////////////////////////
-void ClocksInit(void);	// Configure Clock, Wait States and synch, bus clocks for 48MHz operation
-
-
-/*******************************************************************************
- * Function:        void main(void)
- *
- * PreCondition:    None
- *
- * Input:           None
- *
- * Output:          None
- *
- * Side Effects:    None
- *
- * Overview:        This interrupt handler is called on SysTick timer underflow
- *
- * Note:
- *
- ******************************************************************************/
+/**
+ * @brief Application Main 
+ * 
+ * @return int 
+ */
 int main(void)
 {
-	// CMSIS compliant function not used
-	//SystemInit();
+	/*	Clock initialization (CPU, AHB, APBx, Asynchronous Peripheral Clocks)
+		The System RC Oscillator (RCSYS) provides the source for the main clock
+		at chip startup. It is set to 1MHz.
+	*/
+	ClocksInit();
+	UART3_Init(115200);
 	
-	// Application hardware and software initialization 
-	AppInit();
+	PORT->Group[PORTB].PINCFG[15].reg = PORT_PINCFG_PULLEN;
+	PORT->Group[PORTB].DIRSET.reg = 1 << 15;
 
-	// Super loop
+	// Assign LED0 as OUTPUT
+	PORT->Group[PORTB].PINCFG[LED0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN;
+	PORT->Group[PORTB].DIRSET.reg = 1 << LED0_PIN_NUMBER;
+	PORT->Group[PORTB].OUTSET.reg = 1 << LED0_PIN_NUMBER;
+
+	char c[] = "Juice Box C++ UART V0.1\r\n";
+	UART3_Write_Text((char*)&c);
+
+	//check for conditions to continue looping
+	//scheduler implemnetation tbd
+	//MAIN Loop
 	while(1)
 	{
-		// Run your application
-		AppRun();
+		//Toggles at 750kHz or 673ns per iter
+		//661kHz 756ns
+
+		// Check to see if we have data
+		if (UART3_Has_Data()) 
+		{
+			// Read Data from UART3
+			char c = UART3_Read();
+			
+			// Write Back the Data We Read
+			UART3_Write(c);
+		}
 	}
-} // main()
+
+}
 
 
 

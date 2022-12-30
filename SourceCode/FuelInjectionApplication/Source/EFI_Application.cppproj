@@ -190,25 +190,37 @@
     <OutputFileExtension>.elf</OutputFileExtension>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.cpp">
+    <Compile Include="APP\APP_GPIO.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="app.h">
+    <Compile Include="APP\APP_GPIO.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="clock.cpp">
+    <Compile Include="CORE\clock.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="clock.h">
+    <Compile Include="CORE\clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\CORE_PIN.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\CORE_PIN.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\delay.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\delay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\UART.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\UART.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="definitions.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="delay.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="delay.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
@@ -223,14 +235,10 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UART.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="UART.h">
-      <SubType>compile</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="APP\" />
+    <Folder Include="CORE\" />
     <Folder Include="Device_Startup\" />
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,7 @@
 //////////////////////////////////////////////////////////////////////////
 #include "app.h"
 #include "UART.h"
+#include "delay.h"
 
 
 /*******************************************************************************
@@ -105,7 +106,7 @@ void UART3_Init(uint32_t baud)
 	* 6) Set USART Baud Rate
 	*/
 	// Baud rate is (65536) * (CPU_CLock - 16 * wanted baud) / CPU_Clock
-	uint64_t baudRate = (uint64_t)65536 * (F_CPU - 16 * baud) / F_CPU;
+	uint64_t baudRate = (uint64_t)65536 * (MAIN_CLK_FREQ - 16 * baud) / MAIN_CLK_FREQ;
 	
 	// Set Baud Rate
 	SERCOM3->USART.BAUD.reg = (uint32_t)baudRate;

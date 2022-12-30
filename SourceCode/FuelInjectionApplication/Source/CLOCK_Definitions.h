@@ -20,17 +20,10 @@
  * Updated on May 25, 2020, 11:18 AM
  */
 
-#ifndef DEFINITIONS_H_
-#define DEFINITIONS_H_
+#include "EFI_Types.h"
 
-// I/O Ports definitions
-#define PORTA     (0ul)
-#define PORTB     (1ul)
-
-// LED0 IO Pin definition
-#define LED0_PORT            PORTA
-#define LED0_PIN_NUMBER      (17ul)
-#define LED0_PIN_MASK        PORT_PA17
+#ifndef CLOCK_DEFINITIONS_H_
+#define CLOCK_DEFINITIONS_H_
 
 // GCLK_MAIN Clock output IO Pin Definition
 #define GCLK_MAIN_OUTPUT_PORT       PORTA
@@ -54,4 +47,4 @@
 // Assumes 32.768 kHz Crystal is connected
 #define EXT_32K_CLK_FREQ (32768u)
 
-#endif /* DEFINITIONS_H_ */
+#endif /* CLOCK_DEFINITIONS_H_ */
