@@ -1,0 +1,12 @@
+<map id="Reset_Handler" name="Reset_Handler">
+<area shape="rect" id="node1" title="This is the code that gets called on processor reset. To initialize the device, and call the main() r..." alt="" coords="5,32,112,57"/>
+<area shape="rect" id="node2" href="$d4/d87/startup__samd21_8c.html#a5f388c8556f7cb6a84b5692db6b6ad80" title=" " alt="" coords="160,7,276,32"/>
+<area shape="rect" id="node3" href="$df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="Application Main." alt="" coords="193,56,243,81"/>
+<area shape="rect" id="node4" href="$d5/df2/app_8cpp.html#af3e36cb06fbb8dc8338aaa76d09314be" title=" " alt="" coords="327,19,389,44"/>
+<area shape="rect" id="node6" href="$d5/df2/app_8cpp.html#a5a4c88960c738830fd21bdb0ad4e4e6b" title=" " alt="" coords="324,80,392,105"/>
+<area shape="rect" id="node5" href="$da/d8a/clock_8cpp.html#a8a970ba8fdea434bd40b5a11ee22d0d6" title=" " alt="" coords="467,5,546,31"/>
+<area shape="rect" id="node7" href="$d8/d2c/_u_a_r_t_8cpp.html#a0e0a7794dc0c24aaee18e0842dd2171f" title=" " alt="" coords="443,55,570,80"/>
+<area shape="rect" id="node8" href="$d8/d2c/_u_a_r_t_8cpp.html#a43e6f111e9687355eb975f5c25bd738e" title=" " alt="" coords="463,104,550,129"/>
+<area shape="rect" id="node9" href="$d8/d2c/_u_a_r_t_8cpp.html#aca5dbb2ebcb7059147cf55183e22877a" title=" " alt="" coords="440,153,573,179"/>
+<area shape="rect" id="node10" href="$d8/d2c/_u_a_r_t_8cpp.html#a7a52ad362530d389047394ab413eef34" title=" " alt="" coords="621,153,723,179"/>
+</map>

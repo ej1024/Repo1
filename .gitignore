@@ -30,5 +30,6 @@
 *.exe
 *.out
 *.app
-/Working/UART C++/UART_CPP/UART_CPP/Debug
-*.vscode/
+
+Debug/
+*.atsuo
