@@ -15,42 +15,42 @@
  *   @TODO make app uart class, extends core pin
  */
 
-#include "PIN_Definitions.h"
+#include "../PIN_Definitions.h"
 
 #ifndef CORE_PIN_H_
 #define CORE_PIN_H_
 
-typedef enum IO_Config_Direction_Enum
+enum IO_Config_Direction_Enum
 {
     Input,
     Output
 };
 
-typedef enum IO_Config_Driver_Strength_Enum
+enum IO_Config_Driver_Strength_Enum
 {
     Normal,
     Strong
 };
 
-typedef enum IO_Config_Pull_Type_Enum
+enum IO_Config_Pull_Type_Enum
 {
     Pull_Down,
     Pull_Up
 };
 
-typedef enum IO_Config_Input_Enable_Enum
+enum IO_Config_Input_Enable_Enum
 {
-    Disable,
-    Enable
+    Input_Sampling_Disable,
+    Input_Sampling_Enable
 };
 
-typedef enum IO_Config_Peripheral_Enable_Enum
+enum IO_Config_Peripheral_Enable_Enum
 {
-    Disable,
-    Enable
+    Pmux_Mode_Disable,
+    Pmux_Mode_Enable
 };
 
-typedef enum IO_Config_Peripheral_Mode_Enum
+enum IO_Config_Peripheral_Mode_Enum
 {
     Peripheral_Mode_A,
     Peripheral_Mode_B,
@@ -62,37 +62,36 @@ typedef enum IO_Config_Peripheral_Mode_Enum
     Peripheral_Mode_H
 };
 
-typedef struct IO_Config_Struct
+struct Basic_IO_Config_Struct
 {
     IO_Config_Direction_Enum IO_Direction;
-
-    IO_Config_Driver_Strength_Enum Driver_Strength;
     IO_Config_Pull_Type_Enum Pull_Type;
-    IO_Config_Input_Enable_Enum Input_Enable;
-    IO_Config_Peripheral_Enable_Enum P_Mux_Enable;
-
-    IO_Config_Peripheral_Mode_Enum P_Mux_Mode;
 };
+
+// struct Adv_IO_Config_Struct
+// {
+//     IO_Config_Direction_Enum IO_Direction;
+
+//     IO_Config_Driver_Strength_Enum Driver_Strength;
+//     IO_Config_Pull_Type_Enum Pull_Type;
+//     IO_Config_Input_Enable_Enum Input_Enable;
+//     IO_Config_Peripheral_Enable_Enum P_Mux_Enable;
+
+//     IO_Config_Peripheral_Mode_Enum P_Mux_Mode;
+// };
 
 class Pin
 {
-private:
-    uint8_t Port;
-    uint8_t Pin;
-    IO_Config_Struct IO_Config;
+protected:
+    uint8_t Pin_Num;
+    uint8_t Port_Num;
 
 public:
-    Pin(Port_Pin_Type PortPin, IO_Config_Struct IO_Config)
-        : IO_Config(IO_Config)
+    Pin(Port_Pin_Type PortPin)
     {
-        Port = PortPin.Port;
-        Pin = PortPin.Pin;
-
-        PORT->Group[Port].PINCFG[Pin].reg = IO_Config.Driver_Strength * PORT_PINCFG_PULLEN +
-                                            IO_Config.Pull_Type * PORT_PINCFG_PULLEN +
-                                            IO_Config.Input_Enable * PORT_PINCFG_INEN +
-                                            IO_Config.P_Mux_Enable * PORT_PINCFG_PMUXEN;
-    }
+        Pin_Num = PortPin.Pin;
+        Port_Num = PortPin.Port;
+    };
 };
 
 #endif /* CORE_PIN_H_ */

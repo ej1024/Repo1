@@ -27,7 +27,8 @@
 //////////////////////////////////////////////////////////////////////////
 // Include and Defines
 //////////////////////////////////////////////////////////////////////////
-#include "CORE_PIN.h"
+#include "./CORE/CORE_GPIO.h"
+#include "./CORE/clock.h"
 
 /**
  * @brief Application Main 
@@ -37,41 +38,18 @@
 int main(void)
 {
 	/*	Clock initialization (CPU, AHB, APBx, Asynchronous Peripheral Clocks)
-		The System RC Oscillator (RCSYS) provides the source for the main clock
-		at chip startup. It is set to 1MHz.
+	The System RC Oscillator (RCSYS) provides the source for the main clock
+	at chip startup. It is set to 1MHz.
 	*/
 	ClocksInit();
-	UART3_Init(115200);
-	
-	PORT->Group[PORTB].PINCFG[15].reg = PORT_PINCFG_PULLEN;
-	PORT->Group[PORTB].DIRSET.reg = 1 << 15;
 
-	// Assign LED0 as OUTPUT
-	PORT->Group[PORTB].PINCFG[LED0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN;
-	PORT->Group[PORTB].DIRSET.reg = 1 << LED0_PIN_NUMBER;
-	PORT->Group[PORTB].OUTSET.reg = 1 << LED0_PIN_NUMBER;
+	Output_Pin LED_Pin(PB30);
 
-	char c[] = "Juice Box C++ UART V0.1\r\n";
-	UART3_Write_Text((char*)&c);
+	while(1){
 
-	//check for conditions to continue looping
-	//scheduler implemnetation tbd
-	//MAIN Loop
-	while(1)
-	{
-		//Toggles at 750kHz or 673ns per iter
-		//661kHz 756ns
-
-		// Check to see if we have data
-		if (UART3_Has_Data()) 
-		{
-			// Read Data from UART3
-			char c = UART3_Read();
-			
-			// Write Back the Data We Read
-			UART3_Write(c);
-		}
+		PORT->Group[1].OUTTGL.reg = 1 << 30;
 	}
+
 
 }
 

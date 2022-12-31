@@ -190,10 +190,7 @@
     <OutputFileExtension>.elf</OutputFileExtension>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="APP\APP_GPIO.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="APP\APP_GPIO.h">
+    <Compile Include="CLOCK_Definitions.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="CORE\clock.cpp">
@@ -202,25 +199,16 @@
     <Compile Include="CORE\clock.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="CORE\CORE_GPIO.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\CORE_GPIO.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="CORE\CORE_PIN.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="CORE\CORE_PIN.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CORE\delay.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CORE\delay.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CORE\UART.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CORE\UART.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="definitions.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
@@ -233,6 +221,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PIN_Definitions.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
