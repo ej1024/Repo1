@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('df/d0a/main_8cpp_source.html','../../'
 <a href="../../df/d0a/main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * File:   main.c</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Author: Armstrong Subero</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Processor: SAMD21G18A @ 48MHz, 3.3v</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Processor: SAMD21J18A @ 48MHz, 3.3v</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Program: Source file for application</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Compiler: ARM-GCC (v6.3.1, Atmel Studio 7.0)</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Program Version 1.0</span></div>
@@ -114,34 +114,51 @@ $(document).ready(function(){initNavTree('df/d0a/main_8cpp_source.html','../../'
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> * Author                Rev     Date          Description</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * Armstrong Subero      1.1     26/05/2020    Initial Release</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> *</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * Updated on May 26, 2020, 11:51 AM</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * Updated on 2022-12-30 00:36:16</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> */</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// Include and Defines</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span><span class="preprocessor">#include &quot;<a class="code" href="../../d2/d39/app_8h.html">app.h</a>&quot;</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   37</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// Application hardware and software initialization </span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_function" href="../../d5/df2/app_8cpp.html#af3e36cb06fbb8dc8338aaa76d09314be">AppInit</a>();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Main Loop</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">while</span>(1)</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">//check for conditions to continue looping</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">//scheduler implemnetation tbd</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_function" href="../../d5/df2/app_8cpp.html#a5a4c88960c738830fd21bdb0ad4e4e6b">AppRun</a>();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html">./CORE/CORE_PIN.h</a>&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d6e/clock_8h.html">./CORE/clock.h</a>&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;<a class="code" href="../../dd/dee/delay_8h.html">./CORE/delay.h</a>&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">   39</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">/*  Clock initialization (CPU, AHB, APBx, Asynchronous Peripheral Clocks)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">    The System RC Oscillator (RCSYS) provides the source for the main clock</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">    at chip startup. It is set to 1MHz.</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">    */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_function" href="../../da/d8a/clock_8cpp.html#a8a970ba8fdea434bd40b5a11ee22d0d6">ClocksInit</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="../../d7/d68/class_pin.html">Pin</a> LED_Pin(<a class="code hl_define" href="../../d2/dd0/_p_i_n___definitions_8h.html#ac63eafce488249af85567c01243ff857">PB30</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    LED_Pin.<a class="code hl_function" href="../../d7/d68/class_pin.html#a7320fa19a71014f3744bb0eddbe79dfc">Set_Direction</a>(<a class="code hl_enumvalue" href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html#ab297d39e891d78cd860c7d041f0f3431ae18e94624772459b0083ef7cc362fc96">Output</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    LED_Pin.<a class="code hl_function" href="../../d7/d68/class_pin.html#a79a97d37004ff6bd6ef977e745e5523f">Set_Pull_Up_Mode</a>(<a class="code hl_enumvalue" href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html#af66d9a4f26d22a010a163394b0e07729a4ac3d5a2c2aa6169e4f5c186857bc752">Pull_Up</a>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="ttc" id="aapp_8cpp_html_a5a4c88960c738830fd21bdb0ad4e4e6b"><div class="ttname"><a href="../../d5/df2/app_8cpp.html#a5a4c88960c738830fd21bdb0ad4e4e6b">AppRun</a></div><div class="ttdeci">void AppRun(void)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/df2/app_8cpp_source.html#l00087">app.cpp:87</a></div></div>
-<div class="ttc" id="aapp_8cpp_html_af3e36cb06fbb8dc8338aaa76d09314be"><div class="ttname"><a href="../../d5/df2/app_8cpp.html#af3e36cb06fbb8dc8338aaa76d09314be">AppInit</a></div><div class="ttdeci">void AppInit(void)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/df2/app_8cpp_source.html#l00048">app.cpp:48</a></div></div>
-<div class="ttc" id="aapp_8h_html"><div class="ttname"><a href="../../d2/d39/app_8h.html">app.h</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Application Main.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d0a/main_8cpp_source.html#l00037">main.cpp:37</a></div></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">while</span>(1){</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_define" href="../../dd/dee/delay_8h.html#afdccadc6c16847907b3252cdef83e8b0">delay_s</a>(1);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        PORT-&gt;Group[1].OUTTGL.reg = 1 &lt;&lt; 30;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="ttc" id="a_c_o_r_e___p_i_n_8h_html"><div class="ttname"><a href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html">CORE_PIN.h</a></div></div>
+<div class="ttc" id="a_c_o_r_e___p_i_n_8h_html_ab297d39e891d78cd860c7d041f0f3431ae18e94624772459b0083ef7cc362fc96"><div class="ttname"><a href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html#ab297d39e891d78cd860c7d041f0f3431ae18e94624772459b0083ef7cc362fc96">Output</a></div><div class="ttdeci">@ Output</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8c/_c_o_r_e___p_i_n_8h_source.html#l00024">CORE_PIN.h:23</a></div></div>
+<div class="ttc" id="a_c_o_r_e___p_i_n_8h_html_af66d9a4f26d22a010a163394b0e07729a4ac3d5a2c2aa6169e4f5c186857bc752"><div class="ttname"><a href="../../d9/d8c/_c_o_r_e___p_i_n_8h.html#af66d9a4f26d22a010a163394b0e07729a4ac3d5a2c2aa6169e4f5c186857bc752">Pull_Up</a></div><div class="ttdeci">@ Pull_Up</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8c/_c_o_r_e___p_i_n_8h_source.html#l00063">CORE_PIN.h:62</a></div></div>
+<div class="ttc" id="a_p_i_n___definitions_8h_html_ac63eafce488249af85567c01243ff857"><div class="ttname"><a href="../../d2/dd0/_p_i_n___definitions_8h.html#ac63eafce488249af85567c01243ff857">PB30</a></div><div class="ttdeci">#define PB30</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dd0/_p_i_n___definitions_8h_source.html#l00082">PIN_Definitions.h:82</a></div></div>
+<div class="ttc" id="aclass_pin_html"><div class="ttname"><a href="../../d7/d68/class_pin.html">Pin</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8c/_c_o_r_e___p_i_n_8h_source.html#l00071">CORE_PIN.h:72</a></div></div>
+<div class="ttc" id="aclass_pin_html_a7320fa19a71014f3744bb0eddbe79dfc"><div class="ttname"><a href="../../d7/d68/class_pin.html#a7320fa19a71014f3744bb0eddbe79dfc">Pin::Set_Direction</a></div><div class="ttdeci">void Set_Direction(IO_Config_Direction_Enum Direction)</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d9d/_c_o_r_e___p_i_n_8cpp_source.html#l00023">CORE_PIN.cpp:23</a></div></div>
+<div class="ttc" id="aclass_pin_html_a79a97d37004ff6bd6ef977e745e5523f"><div class="ttname"><a href="../../d7/d68/class_pin.html#a79a97d37004ff6bd6ef977e745e5523f">Pin::Set_Pull_Up_Mode</a></div><div class="ttdeci">void Set_Pull_Up_Mode(IO_Config_Pull_Type_Enum Pull_Type)</div><div class="ttdef"><b>Definition:</b> <a href="../../dc/d9d/_c_o_r_e___p_i_n_8cpp_source.html#l00085">CORE_PIN.cpp:85</a></div></div>
+<div class="ttc" id="aclock_8cpp_html_a8a970ba8fdea434bd40b5a11ee22d0d6"><div class="ttname"><a href="../../da/d8a/clock_8cpp.html#a8a970ba8fdea434bd40b5a11ee22d0d6">ClocksInit</a></div><div class="ttdeci">void ClocksInit(void)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d8a/clock_8cpp_source.html#l00073">clock.cpp:73</a></div></div>
+<div class="ttc" id="aclock_8h_html"><div class="ttname"><a href="../../d7/d6e/clock_8h.html">clock.h</a></div></div>
+<div class="ttc" id="adelay_8h_html"><div class="ttname"><a href="../../dd/dee/delay_8h.html">delay.h</a></div></div>
+<div class="ttc" id="adelay_8h_html_afdccadc6c16847907b3252cdef83e8b0"><div class="ttname"><a href="../../dd/dee/delay_8h.html#afdccadc6c16847907b3252cdef83e8b0">delay_s</a></div><div class="ttdeci">#define delay_s(delay)</div><div class="ttdoc">Delay in at least specified number of seconds.</div><div class="ttdef"><b>Definition:</b> <a href="../../dd/dee/delay_8h_source.html#l00058">delay.h:58</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="../../df/d0a/main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Application Main.</div><div class="ttdef"><b>Definition:</b> <a href="../../df/d0a/main_8cpp_source.html#l00039">main.cpp:39</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

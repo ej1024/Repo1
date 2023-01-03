@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['clear_5fscreen_0',['Clear_Screen',['../d2/df9/class_pin___class.html#a1e8197b063f71de497cfd3464f9f7ef5',1,'Pin_Class']]],
-  ['clocksinit_1',['ClocksInit',['../da/d8a/clock_8cpp.html#a8a970ba8fdea434bd40b5a11ee22d0d6',1,'ClocksInit(void):&#160;clock.cpp'],['../d7/d6e/clock_8h.html#a8a970ba8fdea434bd40b5a11ee22d0d6',1,'ClocksInit(void):&#160;clock.cpp']]]
+  ['delay_5fn_5fcycles_0',['delay_n_cycles',['../d5/df5/delay_8cpp.html#a60b8426c2ce85c10bba557349de97147',1,'delay_n_cycles(unsigned long n):&#160;delay.cpp'],['../dd/dee/delay_8h.html#a60b8426c2ce85c10bba557349de97147',1,'delay_n_cycles(unsigned long n):&#160;delay.cpp']]],
+  ['dummy_5fhandler_1',['Dummy_Handler',['../d4/d87/startup__samd21_8c.html#a4ed9b32000d3b15c46ffd748f32ed44d',1,'startup_samd21.c']]]
 ];
