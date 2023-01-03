@@ -27,8 +27,9 @@
 //////////////////////////////////////////////////////////////////////////
 // Include and Defines
 //////////////////////////////////////////////////////////////////////////
-#include "./CORE/CORE_GPIO.h"
+#include "./CORE/CORE_PIN.h"
 #include "./CORE/clock.h"
+#include "./CORE/delay.h"
 
 /**
  * @brief Application Main 
@@ -43,10 +44,13 @@ int main(void)
 	*/
 	ClocksInit();
 
-	Output_Pin LED_Pin(PB30);
+	Pin LED_Pin(PB30);
+	
+	LED_Pin.Set_Direction(Output);
+	LED_Pin.Set_Pull_Up_Mode(Pull_Up);
 
 	while(1){
-
+		delay_s(1);
 		PORT->Group[1].OUTTGL.reg = 1 << 30;
 	}
 

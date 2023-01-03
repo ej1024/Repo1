@@ -9,16 +9,13 @@
  *
  */
 
-/*  @TODO make core pin class
- *   @TODO make app gpio class, extends core pin
- *   @TODO make app pwm class, extends core pin
- *   @TODO make app uart class, extends core pin
- */
-
-#include "../PIN_Definitions.h"
-
 #ifndef CORE_PIN_H_
 #define CORE_PIN_H_
+
+//////////////////////////////////////////////////////////////////////////
+// Include and defines
+//////////////////////////////////////////////////////////////////////////
+#include "../PIN_Definitions.h"
 
 enum IO_Config_Direction_Enum
 {
@@ -26,22 +23,10 @@ enum IO_Config_Direction_Enum
     Output
 };
 
-enum IO_Config_Driver_Strength_Enum
+enum IO_Config_Control_Mode_Enum
 {
-    Normal,
-    Strong
-};
-
-enum IO_Config_Pull_Type_Enum
-{
-    Pull_Down,
-    Pull_Up
-};
-
-enum IO_Config_Input_Enable_Enum
-{
-    Input_Sampling_Disable,
-    Input_Sampling_Enable
+    On_Demand_Sampling,
+    Continuos_Sampling
 };
 
 enum IO_Config_Peripheral_Enable_Enum
@@ -59,26 +44,29 @@ enum IO_Config_Peripheral_Mode_Enum
     Peripheral_Mode_E,
     Peripheral_Mode_F,
     Peripheral_Mode_G,
-    Peripheral_Mode_H
+    Peripheral_Mode_H,
+    Peripheral_Mode_I,
+
+    Peripheral_Mode_Off
 };
 
-struct Basic_IO_Config_Struct
+enum IO_Config_Input_Enable_Enum
 {
-    IO_Config_Direction_Enum IO_Direction;
-    IO_Config_Pull_Type_Enum Pull_Type;
+    Input_Buffer_Disable,
+    Input_Buffer_Enable
 };
 
-// struct Adv_IO_Config_Struct
-// {
-//     IO_Config_Direction_Enum IO_Direction;
+enum IO_Config_Pull_Type_Enum
+{
+    Pull_Down,
+    Pull_Up
+};
 
-//     IO_Config_Driver_Strength_Enum Driver_Strength;
-//     IO_Config_Pull_Type_Enum Pull_Type;
-//     IO_Config_Input_Enable_Enum Input_Enable;
-//     IO_Config_Peripheral_Enable_Enum P_Mux_Enable;
-
-//     IO_Config_Peripheral_Mode_Enum P_Mux_Mode;
-// };
+enum IO_Config_Driver_Strength_Enum
+{
+    Normal,
+    Strong
+};
 
 class Pin
 {
@@ -92,6 +80,13 @@ public:
         Pin_Num = PortPin.Pin;
         Port_Num = PortPin.Port;
     };
+
+    void Set_Direction(IO_Config_Direction_Enum Direction);
+    void Set_Control_Mode(IO_Config_Control_Mode_Enum Control_Mode);
+    void Set_PMux_Mode(IO_Config_Peripheral_Mode_Enum PMux_Mode);
+    void Set_Input_Enable(IO_Config_Input_Enable_Enum Input_Enable);
+    void Set_Pull_Up_Mode(IO_Config_Pull_Type_Enum Pull_Type);
+    void Set_Driver_Strength(IO_Config_Driver_Strength_Enum Driver_Strength);
 };
 
 #endif /* CORE_PIN_H_ */

@@ -199,16 +199,16 @@
     <Compile Include="CORE\clock.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="CORE\CORE_GPIO.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="CORE\CORE_GPIO.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="CORE\CORE_PIN.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="CORE\CORE_PIN.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\delay.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="CORE\delay.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Device_Startup\startup_samd21.c">
