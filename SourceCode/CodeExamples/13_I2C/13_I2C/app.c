@@ -22,7 +22,7 @@
 //////////////////////////////////////////////////////////////////////////
 #include "app.h"
 #include "clock.h"
-
+#include "string.h"
 #include "USART3.h"
 #include "I2C1.h"
 
@@ -89,41 +89,23 @@ void AppRun(void)
 	
 	
 	// variable to hold our data
-	uint8_t data;
+	uint8_t data[3];
 	
 	while(1)
 	{
-		UART3_Write_Text("Start Write\n");
-		
-		// write 10 to address 0x50 to location 0x20
-		I2C1_write_byte(0x50, 0x20, 10);
-		UART3_Write_Text("Write Stop\n");
-		delay_ms(100);
-		
-		UART3_Write_Text("Start Read\n");
+		UART3_Write_Text("Start Read ");
 		// read data at address 0x20 and store it
-		I2C1_read_byte(0x50, 0x20, &data);
-		UART3_Write_Text("Stop Read\n");
-		delay_ms(100);
-		
+		I2C1_read_byte(0x50, 0x20, (char*)&data);
+
 		// get the data
-		uint8_t my_Read = data;
+		uint16_t my_Read = data[1] | (data[0]<<8);
 		
-		// see if the data matches
-		if(my_Read==10)
-		{
-			UART3_Write_Text("Read Byte\n");
-			UART3_Write_Text("Match\n");
-			UART3_Write_Text("Read Byte Done\n");
-		}
+		char buffer [sizeof(int)*8+1];
+		itoa(my_Read,buffer,10);
+		UART3_Write_Text((char*)&buffer);
+		UART3_Write_Text("\r\n");	
 		
-		// else we dont have a match
-		else
-		{
-			UART3_Write_Text("No Match\n");
-		}
-		
-		delay_ms(1000);	
+		delay_ms(250);	
 	}
 } // Apprun()
 
