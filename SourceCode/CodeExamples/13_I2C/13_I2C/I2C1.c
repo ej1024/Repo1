@@ -117,8 +117,8 @@ void I2C1_init(void)
 	  */ 
 	  // Set the Baud rate.
 	  SERCOM0->I2CM.BAUD.reg = 
-	   SERCOM_I2CM_BAUD_BAUD(11) | 
-	   SERCOM_I2CM_BAUD_BAUDLOW(22);
+	   SERCOM_I2CM_BAUD_BAUD(30) | 
+	   SERCOM_I2CM_BAUD_BAUDLOW(30);
 	   
 	 // Wait for synchronization.  
  	 while (SERCOM0->I2CM.SYNCBUSY.bit.SYSOP); 

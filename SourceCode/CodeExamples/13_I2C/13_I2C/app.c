@@ -105,7 +105,7 @@ void AppRun(void)
 		UART3_Write_Text((char*)&buffer);
 		UART3_Write_Text("\r\n");	
 		
-		delay_ms(250);	
+		//delay_ms(250);	
 	}
 } // Apprun()
 
