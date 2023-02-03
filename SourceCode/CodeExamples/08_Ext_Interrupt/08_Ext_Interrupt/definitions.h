@@ -32,9 +32,9 @@
 #define LED0_PIN_NUMBER      (30ul)
 #define LED0_PIN_MASK        PORT_PB30
 
-#define EXT0_PORT            PORTA
-#define EXT0_PIN_NUMBER      (15ul)
-#define EXT0_PIN_MASK        PORT_PA15
+#define EXT0_PORT            PORTB
+#define EXT0_PIN_NUMBER      (00ul)
+#define EXT0_PIN_MASK        PORT_PB00
 
 // GCLK_MAIN Clock output IO Pin Definition
 #define GCLK_MAIN_OUTPUT_PORT       PORTA

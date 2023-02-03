@@ -58,10 +58,16 @@ void AppInit(void)
 	PORT->Group[PORTB].OUTSET.reg = 1 << LED0_PIN_NUMBER;
 
 	//SW Configuration
-	PORT->Group[PORTA].PINCFG[EXT0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN | PORT_PINCFG_INEN | PORT_PINCFG_PMUXEN;
-	PORT->Group[PORTA].PMUX[7].bit.PMUXO = MUX_PA15A_EIC_EXTINT15;
-	PORT->Group[PORTA].DIRCLR.reg = 1 << EXT0_PIN_NUMBER;	// make input
-	PORT->Group[PORTA].OUTSET.reg = 1 << EXT0_PIN_NUMBER;	// needs to set as high because switch is switch to gnd
+	// PORT->Group[PORTA].PINCFG[EXT0_PIN_NUMBER].reg = PORT_PINCFG_PULLEN | PORT_PINCFG_INEN | PORT_PINCFG_PMUXEN;
+	// PORT->Group[PORTA].PMUX[7].bit.PMUXO = MUX_PA15A_EIC_EXTINT15;
+	// PORT->Group[PORTA].DIRCLR.reg = 1 << EXT0_PIN_NUMBER;	// make input
+	// PORT->Group[PORTA].OUTSET.reg = 1 << EXT0_PIN_NUMBER;	// needs to set as high because switch is switch to gnd
+
+	PORT->Group[PORTB].PINCFG[0].reg = PORT_PINCFG_PMUXEN; //PORT_PINCFG_PULLEN;
+	PORT->Group[PORTB].PMUX[0].bit.PMUXE = MUX_PB00A_EIC_EXTINT0;
+	PORT->Group[PORTB].DIRCLR.reg = 1 << EXT0_PIN_NUMBER;	// make input
+	//PORT->Group[PORTB].OUTSET.reg = 1 << EXT0_PIN_NUMBER;	// needs to set as high because switch is switch to gnd
+
 
 } // AppInit()
 
@@ -135,11 +141,11 @@ void AppRun(void)
 	// falling edge detection
 	// filter 7 enable
 	// config 0 for EXTINT 0-7 and config 1 for EXTINT 8-15
-	EIC->CONFIG[1].reg |= EIC_CONFIG_SENSE7_FALL | EIC_CONFIG_FILTEN7;
+	EIC->CONFIG[0].reg |= EIC_CONFIG_SENSE0_BOTH | EIC_CONFIG_FILTEN0;
 	
     
     // enable the interrupt
-	EIC->INTENSET.bit.EXTINT15 = 1;
+	EIC->INTENSET.bit.EXTINT0 = 1;
 	EIC->CTRL.bit.ENABLE = 1;
 	
 	// wait for synchronization	
@@ -155,8 +161,8 @@ void AppRun(void)
 	while(1)
 	{
         // regular state toggle LED
-		REG_PORT_OUTSET1 = LED0_PIN_MASK;
-		delay_ms(100);
+		//REG_PORT_OUTSET1 = LED0_PIN_MASK;
+		//delay_ms(100);
 	}
 
 } // Apprun()
@@ -186,10 +192,10 @@ void EIC_Handler(void)
 	if ( (EIC->INTFLAG.reg & (EXT0_PIN_MASK) ) != 0 )
 	{
 		// Turn the LED on PA17 ON
-		REG_PORT_OUTCLR1 = LED0_PIN_MASK;
+		REG_PORT_OUTTGL1 = LED0_PIN_MASK;
 		
 		// delay 3000 ms
-		delay_ms(3000);
+		//delay_ms(3000);
 
 		// clear interrupt flag
 		EIC->INTFLAG.reg = (EXT0_PIN_MASK);
