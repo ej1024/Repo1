@@ -92,8 +92,8 @@ void AppRun(void)
 	
 	while(1)
 	{
-		// read the ADC channel 19 (PA11)
-		result =  adc_readchannel(19);
+		// read the ADC channel 8 (PB00)
+		result =  adc_readchannel(8);
 		
 		// if result under threshold keep LED off
 		if (result < 512)
